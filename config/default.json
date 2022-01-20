@@ -1,0 +1,23 @@
+{
+    "db" : "mongodb://172.20.128.2/Eco",
+    "aqi_end": "https://api.waqi.info",
+    "aqi_loc":"Rome,Lazio",
+    "aqi_time_int":	"100000",
+    "aqi_prov":"Roma",
+    "timer_meteo" : "120000",
+    "LAT_MIN":"41.6636111",
+    "LAT_MAX":"42.0444444",
+    "LON_MIN":"12.134444444444444",
+    "LON_MAX":"13.054166666666667",
+    "apiuv_url": "https://api.openuv.io/api/v1/uv",
+    "Rome_lat": "41.89",
+    "Rome_lon": "12.48",
+    "weather_report_url" : "https://api.openweathermap.org/data/2.5/onecall?lat=41.89&lon=12.48&appid=",
+    "weather_report_updater": "http://api.openweathermap.org/data/2.5/weather?q=rome,it&appid=",
+    "pw_salt":10,
+    "email_host":"smtp.libero.it",
+    "max_daily_report":"3",
+    "amqp_server": "amqp://172.20.128.3",
+    "amqp_queue":"Eco-queue",
+    "token_time" : "20000"
+}
