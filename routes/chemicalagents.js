@@ -15,11 +15,44 @@ router.get('/', auth, async (req,res) => {
 
     const result=await Chemical_Agent.find({reg_date:max_date.reg_date})
     .select("sensor uid -_id types value lat long")
+    toback=[]
+    obj={}
+    for (el in result)
+    {
+     app=await Chemical_Agent.find({uid:result[el].uid,types:result[el].types})
+    .sort("-reg_date")
+    if(app.length>0)
+    {
+        let i=0;
+        let sum=0;
+        let len=app.length
+        for(i=0;i<len;i++)
+        {
+           // console.log(result[i].value)
+            sum+=app[i].value
+            
+        }
+        //console.log(sum)
+        let avg=(sum/app.length)
+        th="SOTTO"
+        if(parseInt(result[el.value]) > parseInt(avg))
+            th="SOPRA"
 
-    if(result.length>0)
-        res.status(200).send(result)
-    else
-        res.status(404).send('No data available')
+         obj={
+                        sensor : result[el].sensor,
+                        uid : result[el].uid,
+                        lat : parseFloat(result[el].lat).toFixed(2),
+                        lng : parseFloat(result[el].long).toFixed(2),
+                        value: result[el].value,
+                        types: result[el].types,
+                        avg: avg,
+                        th: th
+        }
+     }
+     toback.push(obj)
+
+    }
+    res.status(200).send(toback)
   
 })
 
@@ -111,7 +144,7 @@ router.get('/filter/date/:date_start/:date_end/type/:type/:station_id', [auth, o
 
 
 
-router.get('/filter/avg/:station_id/:type', [auth, operator], async (req,res) => {
+router.get('/filter/avg/:station_id/:type', async (req,res) => {
     
     let par1=req.params.station_id
     let par2=req.params.type.toUpperCase()

@@ -6,7 +6,7 @@
 
     "aqi_end": "https://api.waqi.info",
     "aqi_loc":"Rome,Lazio",
-    "aqi_time_int":	"100000",
+    "aqi_time_int":	"30000",
     "aqi_prov":"Roma",
     
     "timer_meteo" : "120000",
